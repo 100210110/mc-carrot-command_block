@@ -1,9 +1,10 @@
 # mc-carrot-command_block
-关于萝卜钓竿触发命令的命令方块组辅助生成工具
+关于萝卜钓竿触发命令的命令方块组辅助生成工具，需要pyperclip库实现自动复制
+
+# 创建萝卜吊杆计分板
 
 首先需要在游戏创建一个统计萝卜钓竿的计分板，由于计分板id写死在程序里了需要统一叫做carrot_used，如下
 
-# 创建萝卜吊杆计分板
 /scoreboard objectives add carrot_used minecraft.used:minecraft.carrot_on_a_stick ["",{"text":"萝卜吊杆使用次数","color":"gold"}]
 
 # 图片中，下面为开启状态时激活的链，上面为关闭时激活的链
