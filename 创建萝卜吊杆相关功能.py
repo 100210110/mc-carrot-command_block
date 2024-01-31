@@ -1,13 +1,13 @@
 from pyperclip import copy
+first_of_all = '/scoreboard objectives add carrot_used minecraft.used:minecraft.carrot_on_a_stick ["",{"text":"萝卜吊杆使用次数","color":"gold"}]'
 
-
-def command_out(run_command, text):     # 套上检测再复制
+def command_out(run_command, text):     # 给输入的套上检测再复制
     command = f"""/execute as @a[nbt={{SelectedItem:{{tag:{{Re_tool:{tool_name}}}}}}},scores={{carrot_used=1..}}] at @s run {run_command}"""
     print(command, f"\n\n<{text}已复制>")
     copy(command)
     input(f"-按任意键继续-\n")
 
-def command_copy(run_command, text):    # 直接复制
+def command_copy(run_command, text):    # 输入啥复制啥
     print(run_command, f"\n\n<{text}已复制>")
     copy(run_command)
     input(f"-按任意键继续-\n")
@@ -17,11 +17,11 @@ def command_copy(run_command, text):    # 直接复制
 default_tool_name = "Re_tool"
 default_item_name = "物品名字"
 default_name_color = "gold"
-default_name_italic = "false"
-default_name_bold = "true"
+default_name_italic = False
+default_name_bold = True
 default_Lore_text1 = "这是默认物品功能描述"
 default_Lore_color1 = "aqua"
-default_Lore_italic1 = "false"
+default_Lore_italic1 = False
 default_Lore_text2 = "这是默认吐槽"
 default_end_command = "scoreboard players reset @a[scores={carrot_used=1..}] carrot_used"
 
@@ -64,11 +64,11 @@ elif mode == 2:
 give_command = f"""/give @p minecraft:carrot_on_a_stick{{Re_tool:{tool_name},display:{{Name:'{{"text":"{item_name}","color":"{name_color}","italic":{name_italic},"bold":{name_bold}}}',Lore:['{{"text":"{Lore_text1}","color":"{Lore_color1}","italic":{Lore_italic1}}}','{{"text":"{Lore_text2}"}}']}}}}"""
 command_copy(give_command, f"获取物品指令")
 
-title_command = f"""title @s actionbar [{{"text":"","bold":"true"}},{{"text":"<","color":"yellow"}},{{"text":"{item_name}","color":"gold"}},{{"text":">","color":"yellow"}},{{"text":" 当前已","color":"yellow"}},{{"text":" 开启","color":"green"}}]"""
+title_command = f"""title @s actionbar [{{"text":"","bold":true}},{{"text":"<","color":"yellow"}},{{"text":"{item_name}","color":"gold"}},{{"text":">","color":"yellow"}},{{"text":" 当前已","color":"yellow"}},{{"text":" 开启","color":"green"}}]"""
 befor_command = f"""/execute as @a[nbt={{SelectedItem:{{tag:{{Re_tool:{tool_name}}}}}}}] at @s run {title_command}"""
 command_copy(befor_command, "状态为开的通知")
 
-text_command = f"""tellraw @s [{{"text":">>> ","bold":true,"color":"yellow"}},{{"text":"当前已执行 ","color":"white","bold":"false"}},{{"text":"{item_name}","color":"green"}}]"""
+text_command = f"""tellraw @s [{{"text":">>> ","bold":true,"color":"yellow"}},{{"text":"当前已执行 ","color":"white","bold":False}},{{"text":"{item_name}","color":"green"}}]"""
 command_out(text_command, "执行文本反馈指令")
 
 sound_command = """playsound minecraft:block.note_block.bell voice @s ~ ~ ~"""
@@ -85,7 +85,7 @@ while run_command:
 end_command = default_end_command
 command_out(end_command, "结束指令")
 
-title_command = f"""title @s actionbar [{{"text":"","bold":"true"}},{{"text":"<","color":"yellow"}},{{"text":"{item_name}","color":"gold"}},{{"text":">","color":"yellow"}},{{"text":" 当前已","color":"yellow"}},{{"text":" 关闭","color":"red"}}]"""
+title_command = f"""title @s actionbar [{{"text":"","bold":true}},{{"text":"<","color":"yellow"}},{{"text":"{item_name}","color":"gold"}},{{"text":">","color":"yellow"}},{{"text":" 当前已","color":"yellow"}},{{"text":" 关闭","color":"red"}}]"""
 ending_command = f"""/execute as @a[nbt={{SelectedItem:{{tag:{{Re_tool:{tool_name}}}}}}}] at @s run {title_command}"""
 copy(ending_command)
 print(ending_command, f"\n\n<状态为关的通知已复制>")
